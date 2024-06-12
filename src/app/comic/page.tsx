@@ -9,6 +9,7 @@ import baseThirdPanel from "../../../public/comic-panels/third_panel.png";
 import {updatePanelSet} from "@/scripts/Read.js"
 
 //set the base trunks to display by default on read
+//move out of read() and put in before return?
 const Read = ({ firstPanelImage = baseFirstPanel, secondPanelImage = baseSecondPanel, 
     thirdPanelImage = baseThirdPanel }) => {
     return (<>
