@@ -30,10 +30,17 @@ const updatePanelSet = (branchHookId = this.id) => {
 
     //puts in new branch hooks location (using x,y, and pan)
     //move button into correct panel div, then set x and y
-    //would have absolute position
-    let button = document.querySelector(".first-branch-hook")
+    //would have absolute positioning through css ()
+    //declares three hook vars
+    let firstHook = document.querySelector(".first-branch-hook")
+    let secondHook = document.querySelector(".first-branch-hook")
+    let thirdHook = document.querySelector(".first-branch-hook");
+
+    //checks what panel to put the hook in (TODO)
+
+    //ex of adding into correct panel div and setting x and y 
     document.querySelector(".first-panel").appendChild(button);
-    button.style.left = x;
+    firstButton.style.left = x;
     button.style.bottom = y;
 
     //set up branch hooks to have childBranch id
