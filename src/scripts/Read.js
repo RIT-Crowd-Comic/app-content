@@ -25,26 +25,23 @@ const updatePanelSet = (branchHookId = this.id) => {
     //loads in new panels for images
     //sets the src of each image to new src
     document.querySelector("#first-img").src = branchData.images_paths[0];
-    document.querySelector("#second-img").src = branchData.images_paths[1]
+    document.querySelector("#second-img").src = branchData.images_paths[1];
     document.querySelector("#third-img").src = branchData.images_paths[2];
 
-    //puts in new branch hooks location (using x,y, and pan)
+    let hook;
     //move button into correct panel div, then set x and y
-    //would have absolute positioning through css ()
-    //declares three hook vars
-    let firstHook = document.querySelector(".first-branch-hook")
-    let secondHook = document.querySelector(".first-branch-hook")
-    let thirdHook = document.querySelector(".first-branch-hook");
+    for (let i = 0; i < branchData.branches.length; i++) {
+        //checks what panel to put the hook in and append it to that panel div
+        hook = document.querySelector(`.${i}-branch-hook`);
+        document.querySelector(`#${branches[i].pan}`).appendChild(hook);
 
-    //checks what panel to put the hook in (TODO)
+        //sets x and y of button
+        hook.style.left = x;
+        hook.style.bottom = y;
 
-    //ex of adding into correct panel div and setting x and y 
-    document.querySelector(".first-panel").appendChild(button);
-    firstButton.style.left = x;
-    button.style.bottom = y;
-
-    //set up branch hooks to have childBranch id
-    //change id of correlating branch hook buttons 
+        //set up branch hooks to have childBranch id
+        hook.id = branches[i].child_branch_uuid;
+    }
 
 
     //set up back button with parent branch id
