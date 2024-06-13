@@ -29,7 +29,7 @@ const Read = ({ firstPanelImage = baseFirstPanel, secondPanelImage = baseSecondP
             <button id="second-branch-id" className="second-branch-hook" onClick={updatePanelSet}>Branch 2</button>
             <button id="third-branch-id" className="third-branch-hook" onClick={updatePanelSet}>Branch 3</button>
         </div>
-        <button id="back-button">Back</button>
+        <button id="back-button" onClick={updatePanelSet}>Back</button>
     </>);
 }
 

@@ -1,12 +1,12 @@
 "use client"
 
-//
+//values will have to be changed once write to publish method is set
 const storeName = "cur_uuid"
 
 //runs when a branch hook button is selected
 const updatePanelSet = (branchHookId = this.id) => {
     //get data related with branch hook selected
-    obj = readFromLocalStorage()[branchHookId];
+    let obj = readFromLocalStorage()[branchHookId];
 
     //if error reading, log out error message
     if (obj.error) {
@@ -30,47 +30,19 @@ const updatePanelSet = (branchHookId = this.id) => {
 
     //puts in new branch hooks location (using x,y, and pan)
     //move button into correct panel div, then set x and y
+    //would have absolute position
+    let button = document.querySelector(".first-branch-hook")
+    document.querySelector(".first-panel").appendChild(button);
+    button.style.left = x;
+    button.style.bottom = y;
 
     //set up branch hooks to have childBranch id
     //change id of correlating branch hook buttons 
 
+
     //set up back button with parent branch id
     document.querySelector("#back-button").id = branchData.parentBranchId
 }
-
-//ex of structure
-// cur_uuid: {
-//     parentBranchId: "uuid",
-//     panels: [
-//       {
-//         imgPath: ".\path to image",
-//         pan: 0,
-//         position: {
-//           x: 0,
-//           y: 0
-//         },
-//         childBranch: randomUUID()
-//       },
-//       {
-//         imgPath: ".\path to image",
-//         pan: 0,
-//         position: {
-//           x: 0,
-//           y: 0
-//         },
-//         childBranch: randomUUID()
-//       },
-//       {
-//         imgPath: ".\path to image",
-//         pan: 0,
-//         position: {
-//           x: 0,
-//           y: 0
-//         },
-//         childBranch: randomUUID()
-//       }
-//     ]
-//   };
 
 //parses out json correlated with current branch id
 export const readFromLocalStorage = () => {
