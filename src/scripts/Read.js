@@ -4,7 +4,7 @@
 const storeName = "cur_uuid"
 
 //runs when a branch hook button is selected
-const updatePanelSet = (branchHookId) => {
+const updatePanelSet = (branchHookId = this.id) => {
     //get data related with branch hook selected
     obj = readFromLocalStorage()[branchHookId];
 
@@ -24,13 +24,18 @@ const updatePanelSet = (branchHookId) => {
 
     //loads in new panels for images
     //sets the src of each image to new src
-    
+    document.querySelector("#first-img").src = branchData.images_paths[0];
+    document.querySelector("#second-img").src = branchData.images_paths[1]
+    document.querySelector("#third-img").src = branchData.images_paths[2];
+
     //puts in new branch hooks location (using x,y, and pan)
-    //
+    //move button into correct panel div, then set x and y
 
     //set up branch hooks to have childBranch id
     //change id of correlating branch hook buttons 
 
+    //set up back button with parent branch id
+    document.querySelector("#back-button").id = branchData.parentBranchId
 }
 
 //ex of structure
@@ -79,8 +84,6 @@ export const readFromLocalStorage = () => {
         console.log(`ERROR: ${error} with string: ${string}`);
         json = {};
     }
-    //test
-    console.log(`Calling readFromLocalStorage(${key}) with value=${json[key]}`);
 
     return json;
 }
