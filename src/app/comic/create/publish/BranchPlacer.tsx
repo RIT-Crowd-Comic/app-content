@@ -1,8 +1,9 @@
 "use client";
 
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {PanelSet, Branch} from "./PanelSet";
+import Link from 'next/link';
 
 
 const BranchPlacer = () => {
@@ -26,6 +27,46 @@ const BranchPlacer = () => {
     }
 
     const [ps, setPs] = useState<PanelSet>(startPs);
+
+    useEffect(() => {
+        const handleLoad = () => {
+          // Perform actions after the component has fully loaded
+          const img_1_json = localStorage.getItem('image-1');
+          const img_2_json = localStorage.getItem('image-2');
+          const img_3_json = localStorage.getItem('image-3');
+
+          let img_1;
+          if(img_1_json != null){
+            img_1 = JSON.parse(img_1_json);
+          }
+          else {
+            img_1 = "public\images\first_panel.png" 
+          }
+
+          let img_2;
+          if(img_2_json != null){
+            img_2 = JSON.parse(img_2_json);
+          }
+          else {
+            img_2 = "public\images\second_panel.png"
+          }
+
+          let img_3;
+          if(img_3_json != null){
+            img_3 = JSON.parse(img_3_json);
+          }
+          else {
+            img_3 = "public\images\third_panel.png"
+          }
+
+          const pshldr = ps;
+          pshldr.image_paths = [img_1, img_2, img_3];
+        };
+        window.addEventListener('load', handleLoad);
+        return () => {
+          window.removeEventListener('load', handleLoad);
+        };
+      }, []);
     
     const startAdd = () => {
         console.log("You have reached maximum amount of branches");
@@ -94,9 +135,11 @@ const BranchPlacer = () => {
     }
 
     const pushToLocalStorage = () => {
-
+        console.log("Publishing to local storage at: " + ps.current_panel_set_uuid);
+        localStorage.setItem(ps.current_panel_set_uuid, JSON.stringify(ps));
     }
 
+    
     return (<>
         <div id="panel-overview" className="carousel slide">
             <div className="carousel-indicators">
@@ -142,8 +185,12 @@ const BranchPlacer = () => {
                 <p id="num-hooks">You Currently Have {branCount} Hooks Placed.</p>
             </div>
         </div>
-        <button onClick={pushToLocalStorage} id="publish-btn">Publish</button>
+        <button onClick={pushToLocalStorage} id="publish-btn"><Link href="/comic">Publish</Link></button>
     </>);
 }
 
 export default BranchPlacer;
+
+function componentDidMount() {
+    throw new Error('Function not implemented.');
+}
