@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+//
 //imported base trunk panels as static images
 import baseFirstPanel from "../../../public/comic-panels/first_panel.png";
 import baseSecondPanel from "../../../public/comic-panels/second_panel.png";
@@ -24,6 +25,7 @@ const Read = ({ firstPanelImage = baseFirstPanel, secondPanelImage = baseSecondP
             </div>
         </div>
         <div id="branch hooks">
+            {/* updatePanelSet will need to get button id somehow (id will be replaced with child branch ids) */}
             <button id="first-branch-id" className="1-branch-hook" onClick={updatePanelSet}>Branch 1</button>
             <button id="second-branch-id" className="2-branch-hook" onClick={updatePanelSet}>Branch 2</button>
             <button id="third-branch-id" className="3-branch-hook" onClick={updatePanelSet}>Branch 3</button>

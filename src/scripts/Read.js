@@ -4,7 +4,7 @@
 const storeName = "cur_uuid"
 
 //runs when a branch hook button is selected
-const updatePanelSet = (branchHookId = this.id) => {
+const updatePanelSet = (branchHookId) => {
     //get data related with branch hook selected
     let obj = readFromLocalStorage()[branchHookId];
 
@@ -14,7 +14,6 @@ const updatePanelSet = (branchHookId = this.id) => {
         console.log(msg);
         return;
     }
-
     //runs if there is no data in branch (go to create)
     if (!obj.data || obj.data.length == 0) {
         //runs create page
